@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Audit — AIRE</title>
+  <meta name="description"
+    content="Run an AI automation audit. Describe your task and receive an immediate, evidence-backed verdict across nine ethical dimensions." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+
+<body>
+
+  <div class="bg-blobs" aria-hidden="true"></div>
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <header id="main-header">
+    <a class="logo" href="/">
+      AIRE <div class="logo-dot"></div>
+    </a>
+    <div class="nav-links">
+      <nav>
+        <a href="/">Home</a>
+        <a href="/#how-it-works">Method</a>
+        <a href="/#decisions">Framework</a>
+      </nav>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Open navigation menu">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <div class="mobile-nav" id="mobile-nav" role="navigation" aria-label="Mobile navigation">
+    <a href="/">Home</a>
+    <a href="/#how-it-works">Method</a>
+    <a href="/#decisions">Framework</a>
+  </div>
+
+  <main class="audit-wrap">
+
+    <div class="audit-header">
+      <div class="page-eyebrow">Audit Interface</div>
+      <h1>Evaluate an Automation Task</h1>
+      <p class="subtitle">
+        Describe the task or system you want evaluated. The engine will assess it across
+        nine dimensions and return a verdict with full justification.
+      </p>
+    </div>
+
+    <div class="input-card">
+      <label class="input-label" for="task-input">Task Description</label>
+      <textarea id="task-input"
+        placeholder="e.g. Automatically adjust insurance premiums based on predicted future health behaviour risk..."
+        maxlength="2000" aria-describedby="task-hint"></textarea>
+      <p class="input-hint" id="task-hint">
+        Be specific. Include who is affected, what decision is made, and in what domain.
+      </p>
+
+      <div class="examples">
+        <p class="examples-label">Try an example</p>
+        <div class="example-chips" role="group" aria-label="Example tasks">
+          <button class="chip"
+            data-text="Use AI to automatically approve or deny loan applications based on credit history and income data.">Loan
+            Approval</button>
+          <button class="chip"
+            data-text="Automatically sort and tag customer support tickets and route them to the appropriate department.">Ticket
+            Routing</button>
+          <button class="chip"
+            data-text="Use AI to generate a primary diagnosis from patient symptoms and medical history without physician review.">Medical
+            Diagnosis</button>
+          <button class="chip"
+            data-text="Automate payroll processing and bank transfers for regular employee salaries on a monthly schedule.">Payroll
+            Processing</button>
+          <button class="chip"
+            data-text="AI system to independently determine criminal sentencing recommendations based on case data.">Criminal
+            Sentencing</button>
+        </div>
+      </div>
+
+      <div class="submit-row">
+        <span class="char-count" aria-live="polite"><span id="char-counter">0</span> / 2000</span>
+        <button class="btn-submit" id="submit-btn" disabled aria-disabled="true">
+          Run Audit
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="loading-state" id="loading" role="status" aria-label="Analysing task">
+      <div class="spinner-wrap" aria-hidden="true">
+        <div class="spinner"></div>
+        <div class="spinner-inner"></div>
+      </div>
+      <div class="loading-text">
+        <p>Analysing task…</p>
+        <span>Running multi-dimensional ethical evaluation</span>
+      </div>
+    </div>
+
+    <div class="error-card" id="error-card" role="alert">
+      <div class="error-icon" aria-hidden="true">✕</div>
+      <p id="error-msg">Something went wrong. Please ensure the backend is running and try again.</p>
+    </div>
+
+    <div class="results-section" id="results" aria-live="polite">
+      <div class="results-header">
+        <span class="results-title">Audit Results</span>
+        <button class="btn-clear" id="clear-btn">Clear</button>
+      </div>
+
+      <div class="verdict-banner" id="verdict-banner">
+        <div class="verdict-icon" id="verdict-icon" aria-hidden="true"></div>
+        <div class="verdict-content">
+          <div class="verdict-label">Automation Verdict</div>
+          <div class="verdict-text" id="verdict-text"></div>
+        </div>
+      </div>
+
+      <div class="result-grid">
+        <div class="result-card">
+          <div class="card-label">Detected Responsibility</div>
+          <div class="card-value" id="responsibility-val"></div>
+        </div>
+        <div class="result-card">
+          <div class="card-label">Task Classification</div>
+          <div class="card-value" id="classification-val"></div>
+        </div>
+      </div>
+
+      <div class="result-card-full">
+        <div class="card-label">Ethics Reviewer Justification</div>
+        <p class="explanation-text" id="explanation-val"></p>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <div class="footer-logo">AIRE <div class="logo-dot" style="width:7px;height:7px;"></div>
+    </div>
+    <span class="footer-copy">AI Automation Responsibility Engine &nbsp;·&nbsp; Powered by BART + LLaMA3</span>
+  </footer>
+
+  <script src="/static/main.js"></script>
+</body>
+
+</html>
