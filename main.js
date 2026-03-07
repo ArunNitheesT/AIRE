@@ -156,7 +156,7 @@
         submitBtn.disabled = true;
 
         try {
-            const res = await fetch('https://aura-backend-phi.vercel.app/analyze', {
+            const res = await fetch('/analyze', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ text }),
@@ -235,3 +235,4 @@
     }
 
 })();
+
