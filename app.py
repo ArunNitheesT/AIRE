@@ -15,7 +15,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.mount("/static", StaticFiles(directory="static"), name="static")
+# app.mount("/static", StaticFiles(directory="static"), name="static")
 
 
 class TaskInput(BaseModel):
@@ -30,12 +30,12 @@ class TaskOutput(BaseModel):
 
 @app.get("/")
 def serve_home():
-    return FileResponse("static/index.html")
+    return FileResponse("index.html")
 
 
-@app.get("/audit")
+@app.get("audit.html")
 def serve_audit():
-    return FileResponse("static/audit.html")
+    return FileResponse("audit.html")
 
 
 @app.post("/analyze", response_model=TaskOutput)
