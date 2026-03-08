@@ -1,5 +1,4 @@
 (function initPageTransitions() {
-    // Handle browser back/forward buttons
     window.addEventListener("popstate", () => {
         document.body.classList.add("page-exit");
         setTimeout(() => { window.location.reload(); }, 50);
@@ -9,7 +8,6 @@
         if (!anchor) return;
 
         const href = anchor.getAttribute('href');
-        /* Only catch same-origin, non-hash, non-external links */
         if (
             !href ||
             href.startsWith('#') ||
@@ -139,10 +137,6 @@
     });
 })();
 
-
-/* ──────────────────────────────────────────────
-   AUDIT: SUBMIT  →  FETCH  →  RENDER
-   ────────────────────────────────────────────── */
 (function initSubmit() {
     const submitBtn = document.getElementById('submit-btn');
     if (!submitBtn) return;
@@ -156,14 +150,13 @@
         const text = textarea.value.trim();
         if (!text) return;
 
-        /* Reset */
         results?.classList.remove('active');
         errorCard?.classList.remove('active');
         loading?.classList.add('active');
         submitBtn.disabled = true;
 
         try {
-            const res = await fetch('https://pythonbackend-bice.vercel.app/analyze', {
+            const res = await fetch('/analyze', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ text }),
